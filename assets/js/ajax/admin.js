@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const URL = 'http://localhost/project_/e_commerce/';
+    const URL = 'https://bilkis.celciusrpl2.com/';
     const ASSETS = URL+'assets/';
     $('.btn-delete').click(function () {
 

@@ -12,19 +12,20 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/login.css">
+    <link href="<?= base_url('assets/') ?>css/animate.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <section class="login-block">
+    <section class="login-block animated fadeInLeft">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 login-sec bg-white">
                     <a href="<?= base_url() ?>">
-                        <img class="mx-auto d-block mb-5" src="<?= base_url('assets/') ?>img/logo.png" alt="" width="100">
+                        <img class="mx-auto d-block mb-5 animated fadeInUp" src="<?= base_url('assets/') ?>img/logo.png" alt="" width="100">
                     </a>
                     <!-- <h2 class="text-center">Login Now</h2> -->
-                    <form class="login-form" method="post" action="<?= base_url('auth/validator') ?>">
+                    <form class="login-form animated fadeInUp" method="post" action="<?= base_url('auth/validator') ?>">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-uppercase">Username</label>
                             <input type="text" class="form-control" name="username" placeholder="username / email" value="<?= set_value('username') ?>">
@@ -43,7 +44,7 @@
                             <button type="submit" class="btn btn-login float-right">Submit</button>
                         </div>
                     </form>
-                    <div class="copy-text">Don't have an account ? <a href="<?= base_url('auth/register') ?>">Sign Up</a></div>
+                    <div class="copy-text animated fadeInUp">Don't have an account ? <a href="<?= base_url('auth/register') ?>">Sign Up</a></div>
                 </div>
                 <div class="col-md-8 banner-sec d-none d-md-block">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
