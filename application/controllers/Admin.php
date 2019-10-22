@@ -180,4 +180,17 @@ class Admin extends CI_Controller
         $this->admin_model->sending($id);
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+    // Load View
+    public function custome()
+    {
+        $data['banner'] = $this->admin_model->getBanner();
+        $data['patern'] = $this->admin_model->bgPatern();
+
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/navbar');
+        $this->load->view('admin/layouts/sidebar');
+        $this->load->view('admin/custome',$data);
+        $this->load->view('admin/layouts/footer');   
+    }
 }

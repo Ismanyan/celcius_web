@@ -12,11 +12,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta name="description" content="Celcius Coffe adalah tempat mencari inspirasi dan makan renginang">
     <meta name="author" content="Bilkis Ismail">
     <link rel="shortcut icon" href="<?= base_url('assets/') ?>img/favicon.png" type="image/x-icon">
-    
+
     <title>Celcius Coffe</title>
 
     <!-- Bootstrap core CSS -->
+    <link href="<?= base_url('assets/') ?>css/animate.css" rel="stylesheet">
     <link href="<?= base_url('assets/') ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
     <link href="<?= base_url('assets/') ?>css/shop-homepage.css" rel="stylesheet">

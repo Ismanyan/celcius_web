@@ -4,7 +4,7 @@
       <div class="row">
 
           <!-- Kolom Samping Kiri -->
-          <div class="col-lg-3 d-none d-md-block">
+          <div class="col-lg-3 d-none d-md-block animated fadeInLeft">
 
               <!-- Cek Login Status -->
               <?php if ($this->session->userdata('logged_in')) : ?>

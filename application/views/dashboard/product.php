@@ -1,10 +1,10 @@
 <div class="col-lg-9 mt-4">
-    <div class="card mt-4">
+    <div class="card mt-4 animated fadeInUp">
         <img class="card-img-top img-fluid" src="<?= base_url('assets/product/img/') . $product['product_img'] ?>" alt="">
         <div class="card-body">
             <h3 class="card-title"><?= $product['product_name'] ?></h3>
             <h4>Rp.<?= number_format($product['product_price'], 0, ',', '.'); ?></h4>
-      
+
             <p class="card-text my-5"><?= $product['product_desc'] ?></p>
             <div class="btn-group w-100" role="group" aria-label="Basic example">
                 <a href="<?= base_url('transaction/chat/') . $product['product_name'] ?>" target="_blank" class="btn btn-info">Chat</a>
@@ -16,7 +16,7 @@
     </div>
     <!-- /.card -->
 
-    <div class="card card-outline-secondary my-4">
+    <div class="card card-outline-secondary my-4 animated fadeInUp delay-1s">
         <div class="card-header">
             Product Reviews
         </div>
@@ -97,3 +97,4 @@
             </div>
         </div>
     </div>
+</div>

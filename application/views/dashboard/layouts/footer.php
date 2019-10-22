@@ -5,12 +5,58 @@
    <!-- /.container -->
 
    <!-- Footer -->
-   <footer class="py-5 bg-transparent">
+   <footer class="container-fluid bg-white py-5 mt-5 animated fadeInUp">
        <div class="container">
-           <p class="m-0 text-center text-white">Copyright &copy; Bilkis Ismail 2019</p>
+           <div class="row">
+               <div class="col-md-6">
+                   <div class="row">
+                       <div class="col-md-6 ">
+                           <div class="logo-part">
+                               <img src="<?= base_url('assets/') ?>img/logo.png" class="w-50 logo-footer">
+                               <p>Celcius Green Corner
+                                   Jl. Rasuna Said, Pakojan, Tangerang
+                                   Gerbang keluar (belakang) Perum. Banjar Wijaya</p>
+                           </div>
+                       </div>
+                       <div class="col-md-6 px-4">
+                           <h6> Jadwal Buka</h6>
+                           <p> SETIAP SETIAP HARI <br>
+                               WARKOP TUGU KARYA <br>
+                               16.00-24.00 <br>
+                               GREEN CORNER (BANJAR WIJAYA) <br>
+                               11.00-24.00</p>
+                           <a href="https://wa.me/6289604466296" class="btn-footer"> Contact Us</a>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-6">
+                   <div class="row">
+                       <div class="col-md-6 px-4">
+                           <h6> Category</h6>
+                           <div class="row ">
+                               <div class="col-md-6">
+                                   <ul>
+                                       <?php foreach ($category as $key) : ?>
+                                           <li> <a href="<?= base_url('dashboard/category/') . $key['category_id'] ?>"> <?= $key['category_name'] ?></a> </li>
+                                       <?php endforeach; ?>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-md-6 ">
+                           <h6>Social Media</h6>
+                           <div class="social">
+                               <a href="https://www.instagram.com/celciuscoffee_id/"><i class="fab fa-instagram"></i></a>
+                               <a href="https://www.google.co.id/maps/place/Jl.+Tugu+Karya+I,+Cipondoh,+Kec.+Cipondoh,+Kota+Tangerang,+Banten+15122/@-6.1885021,106.6674778,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69f9043007db6d:0xc5305b8aa5d32295!8m2!3d-6.1885074!4d106.6696665"><i class="fas fa-map-marker-alt"></i></a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
        </div>
-       <!-- /.container -->
+       </div>
    </footer>
+
 
    <!-- Bootstrap core JavaScript -->
    <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>

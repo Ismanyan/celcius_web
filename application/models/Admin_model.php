@@ -163,5 +163,16 @@ class Admin_model extends CI_Model
         $this->db->update('order_list', $data2);
 
     }
-    
+
+    // Get all banner 
+    public function getBanner()
+    {
+        return $this->db->get('banner');
+    }
+
+    // Get background pattern
+    public function bgPatern()
+    {
+        return $this->db->get('bg_patern');
+    }
 }

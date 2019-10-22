@@ -18,6 +18,13 @@
                     <i class="fas fa-fw fa-boxes"></i>
                     <span>Product</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('admin/custome') ?>">
+                    <i class="fas fa-fw fa-cut"></i>
+                    <span>Customization</span>
+                    <div class="btn btn-warning btn-sm">BETA</div>
+                </a>
+            </li>
         </ul>
 
         <div id="content-wrapper">
