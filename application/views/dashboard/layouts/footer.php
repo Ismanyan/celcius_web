@@ -81,6 +81,7 @@
        <script>
            $(document).ready(function() {
                $('.after_purchased').hide();
+               $('.stock_sold').hide();
 
                //Custome function    
                function addCommas(nStr) {
@@ -95,15 +96,24 @@
                    return x1 + x2;
                }
 
+
                // System payment   
                $('#product_purchased').on('keyup', function() {
                    var product_purchased = $('#product_purchased').val();
+                   var stok = <?= $product['product_stock'] ?>;
                    var total = <?= $product['product_price'] ?> * product_purchased + 15000;
+
                    $('#product_total').val('Rp.' + addCommas(total));
                    $('.after_purchased').show();
 
                    if ($('#product_purchased').val() == "") {
                        $('.after_purchased').hide();
+                   }
+
+                   if (product_purchased >= stok) {
+                       $('.stock_sold').show();
+                   } else {
+                       $('.stock_sold').hide();
                    }
                });
 

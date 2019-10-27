@@ -80,4 +80,37 @@ class Auth_model extends CI_Model
         }
         
     }
+
+    // Change pass
+    public function update_pass($input)
+    {
+        $check = $this->db->where('user_name', $input['username'])->get('user');
+
+        // pengecekan username dan password
+        if ($check->num_rows() > 0) {
+            if (password_verify($input['oldpassword'], $check->row_array()['user_password'])) {
+                $data = ['user_password'=> password_hash($input['password'], PASSWORD_DEFAULT)];
+                $this->db->where('user_id',$this->session->userdata('user_id'));
+                $this->db->update('user',$data);
+
+                $data['Title'] = "Ubah Password Success";
+                $data['Type'] = "success";
+                $data['Url'] = base_url('auth/logout');
+                $data['Desc'] = "Silahkan login kembali";
+                $this->load->view('notif/Notif', $data);
+            } else {
+                $data['Title'] = "Password Salah !";
+                $data['Type'] = "error";
+                $data['Url'] = base_url('user/profile');
+                $data['Desc'] = "Pastikan password benar dan coba kembali";
+                $this->load->view('notif/Notif', $data);
+            }
+        } else {
+            $data['Title'] = "Username Salah !";
+            $data['Type'] = "error";
+            $data['Url'] = base_url('user/profile');
+            $data['Desc'] = "Pastikan username benar dan coba kembali";
+            $this->load->view('notif/Notif', $data);
+        }
+    }
 }

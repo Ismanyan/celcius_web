@@ -27,6 +27,10 @@
                     <small class="text-muted">Posted by Anonymous on <?= $key['created_at'] ?></small>
                     <hr>
                 <?php endforeach; ?>
+                <?php else: ?>
+                <div class="alert alert-warning">
+                    Belum ada review pada product ini
+                </div>
             <?php endif; ?>
 
         </div>
@@ -45,55 +49,64 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url('transaction/buy') ?>">
-                    <div class="modal-body">
-                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                        <div class="form-group">
-                            <label for="product_name">Nama Produk</label>
-                            <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $product['product_name'] ?>" readonly required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product_price">Harga Produk</label>
-                            <input type="text" class="form-control" id="product_price" name="product_price" value="Rp.<?= number_format($product['product_price'], 0, ',', '.'); ?>" readonly required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product_purchased">Jumlah Beli</label>
-                            <input type="text" class="form-control" id="product_purchased" name="product_purchased" required>
-                        </div>
-                        <div class="form-group after_purchased">
-                            <label for="product_ongkir">Biaya Ongkir</label>
-                            <input type="text" class="form-control" id="product_ongkir" name="product_ongkir" value="Rp.<?= number_format(15000, 0, ',', '.'); ?>" readonly required>
-                        </div>
-                        <div class="form-group after_purchased">
-                            <label for="product_total">Total Harga</label>
-                            <input type="text" class="form-control" id="product_total" name="product_total" readonly required>
-                        </div>
-                        <?php if ($address->num_rows() != 0) : ?>
+                <?php if ($this->session->userdata('logged_in') == true) : ?>
+                    <form method="post" action="<?= base_url('transaction/buy') ?>">
+                        <div class="modal-body">
+                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                            <div class="form-group">
+                                <label for="product_name">Nama Produk</label>
+                                <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $product['product_name'] ?>" readonly required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product_price">Harga Produk</label>
+                                <input type="text" class="form-control" id="product_price" name="product_price" value="Rp.<?= number_format($product['product_price'], 0, ',', '.'); ?>" readonly required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product_purchased">Jumlah Beli</label>
+                                <input type="text" class="form-control" id="product_purchased" name="product_purchased" required>
+                            </div>
                             <div class="form-group after_purchased">
-                                <label for="address">Alamat</label>
-                                <select class="form-control" id="address" name="address" required>
-                                    <option selected disabled>-- Pilih Alamat --</option>
-                                    <?php foreach ($address->result_array() as $key) : ?>
-                                        <option value="<?= $key['address_id'] ?>"><?= $key['address_name'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label for="product_ongkir">Biaya Ongkir</label>
+                                <input type="text" class="form-control" id="product_ongkir" name="product_ongkir" value="Rp.<?= number_format(15000, 0, ',', '.'); ?>" readonly required>
                             </div>
-                        <?php else : ?>
-                            <div class="alert alert-danger" role="alert">
-                                Anda belum menambahkan alamat. Silahkan tambah alamat anda <a href="<?= base_url('user/profile') ?>" class="alert-link">disini</a>.
+                            <div class="alert stock_sold alert-warning">
+                                Maaf maksimum order pada product ini hanya <b><?= $product['product_stock'] ?> order</b>
                             </div>
-                        <?php endif; ?>
+                            <div class="form-group after_purchased">
+                                <label for="product_total">Total Harga</label>
+                                <input type="text" class="form-control" id="product_total" name="product_total" readonly required>
+                            </div>
+                            <?php if ($address->num_rows() != 0) : ?>
+                                <div class="form-group after_purchased">
+                                    <label for="address">Alamat</label>
+                                    <select class="form-control" id="address" name="address" required>
+                                        <option selected disabled>-- Pilih Alamat --</option>
+                                        <?php foreach ($address->result_array() as $key) : ?>
+                                            <option value="<?= $key['address_id'] ?>"><?= $key['address_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            <?php else : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    Anda belum menambahkan alamat. Silahkan tambah alamat anda <a href="<?= base_url('user/profile') ?>" class="alert-link">disini</a>.
+                                </div>
+                            <?php endif; ?>
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <?php if ($address->num_rows() != 0) : ?>
+                                <button type="submit" class="btn btn-primary">Order</button>
+                            <?php else : ?>
+                                <span class="btn btn-primary disabled">Order</span>
+                            <?php endif; ?>
+                        </div>
+                    </form>
+                <?php else : ?>
+                    <div class="alert alert-danger m-3 text-center" role="alert">
+                        Login untuk melanjutkan. <a href="<?= base_url('auth/login') ?>" class="alert-link">Login disini</a>.
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <?php if ($address->num_rows() != 0) : ?>
-                            <button type="submit" class="btn btn-primary">Order</button>
-                        <?php else : ?>
-                            <span class="btn btn-primary disabled">Order</span>
-                        <?php endif; ?>
-                    </div>
-                </form>
+                <?php endif; ?>
             </div>
         </div>
     </div>

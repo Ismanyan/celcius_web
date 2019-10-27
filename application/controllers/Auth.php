@@ -40,7 +40,6 @@ class Auth extends CI_Controller
     // Cek validasi login
     public function validator()
     {
-
         // Pengecekan input
         $this->form_validation->set_rules('username', '"username"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags');
         $this->form_validation->set_rules('password', '"password"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags');
@@ -90,5 +89,25 @@ class Auth extends CI_Controller
         );
         $this->session->unset_userdata($data);
         redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    // Update old password
+    public function update_pass() {
+        $this->form_validation->set_rules('username', '"Username"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags');
+        $this->form_validation->set_rules('oldpassword', '"Old Password"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags');
+        $this->form_validation->set_rules('password', '"New Password"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags');
+        $this->form_validation->set_rules('password2', '"Confirm Password"', 'trim|required|min_length[5]|max_length[52]|encode_php_tags|matches[password]');
+        
+        if ($this->form_validation->run() !== FALSE) {
+            $input['username'] = htmlspecialchars($this->input->post('username', true));
+            $input['oldpassword'] = htmlspecialchars($this->input->post('oldpassword', true));
+            $input['password'] = htmlspecialchars($this->input->post('password', true));
+            $this->auth_model->update_pass($input);
+
+        } else {
+            echo "oke";
+            exit;
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 }

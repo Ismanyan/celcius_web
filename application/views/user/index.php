@@ -9,7 +9,7 @@
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Daftar Alamat</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pengaturan Akun</a>
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ubah Password</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -85,7 +85,33 @@
                 </div>
             </div>
             <!-- End Address Page -->
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <form class="login-form animated fadeInUp" method="post" action="<?= base_url('auth/update_pass') ?>">
+                    <div class="form-group">
+                        <label for="username" class="text-uppercase">Username</label>
+                        <input type="text" class="form-control" placeholder="" name="username" required value="<?= set_value('username') ?>">
+                        <small><?= form_error('username'); ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-uppercase">Old Password</label>
+                        <input type="password" class="form-control" placeholder="" name="oldpassword" required>
+                        <small><?= form_error('oldpassword'); ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-uppercase">New Password</label>
+                        <input type="password" class="form-control" placeholder="" name="password" required>
+                        <small><?= form_error('password'); ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-uppercase">Confirm Password</label>
+                        <input type="password" class="form-control" placeholder="" name="password2" required>
+                        <small><?= form_error('password2'); ?></small>
+                    </div>
+                    <div class="form-check">
+                        <button type="submit" class="btn btn-primary w-100" style="margin-left:-1% !important;">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
